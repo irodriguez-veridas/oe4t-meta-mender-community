@@ -1,0 +1,18 @@
+header:
+  version: 11
+  includes:
+    - kas/include/mender-full.yml
+    - kas/include/tegra-jetpack5.yml
+
+machine: jetson-orin-nano-devkit-nvme
+
+local_conf_header:
+  tegra-orin-nano-nvme: |
+    EMMC_SIZE = "10000000000"
+    UBOOT_EXTLINUX = "1"
+
+  # Fail to set efivar in /sys/firmware/efi/efivars/KernelCommandLine-781e084c-a330-417c-b678-38e696380cb9
+  to-be-reviewed: |
+    MENDER_FEATURES_DISABLE:append = " mender-persist-systemd-machine-id"
+
+  
