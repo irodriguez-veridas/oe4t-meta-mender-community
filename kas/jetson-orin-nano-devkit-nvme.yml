@@ -10,3 +10,4 @@ local_conf_header:
   tegra-orin-nano-nvme: |
     EMMC_SIZE = "10000000000"
     UBOOT_EXTLINUX = "1"
+    USE_REDUNDANT_FLASH_LAYOUT_DEFAULT = "1"
