@@ -51,6 +51,7 @@ MENDER_DATA_PART_NUMBER_DEFAULT:tegra210 = "${@'16' if (d.getVar('TEGRA_SPIFLASH
 MENDER_DATA_PART_NUMBER_DEFAULT:jetson-nano-emmc = "19"
 MENDER_DATA_PART_NUMBER_DEFAULT:xavier-nx = "12"
 MENDER_DATA_PART_NUMBER_DEFAULT:tegra234 = "16"
+MENDER_DATA_PART_NUMBER_DEFAULT:jetson-orin-nano-devkit = "15"
 MENDER_ROOTFS_PART_A_NUMBER_DEFAULT = "1"
 MENDER_ROOTFS_PART_B_NUMBER_DEFAULT:tegra186 = "33"
 MENDER_ROOTFS_PART_B_NUMBER_DEFAULT:tegra194 = "42"
@@ -130,6 +131,7 @@ TEGRA_MENDER_RESERVED_SPACE_MB_DEFAULT:jetson-nano-2gb-devkit = "5120"
 TEGRA_MENDER_RESERVED_SPACE_MB ?= "${TEGRA_MENDER_RESERVED_SPACE_MB_DEFAULT}"
 MENDER_STORAGE_TOTAL_SIZE_MB_DEFAULT:tegra = "${@tegra_mender_calc_total_size(d)}"
 MENDER_STORAGE_DEVICE_DEFAULT:jetson-orin-nano-devkit-nvme = "/dev/nvme0n1"
+MENDER_STORAGE_DEVICE_DEFAULT:jetson-orin-nano-devkit = "/dev/mmcblk1"
 
 def tegra_mender_uboot_feature(d):
     if (d.getVar('PREFERRED_PROVIDER_virtual/bootloader') or '').startswith('cboot'):
@@ -145,7 +147,7 @@ do_image_mender[depends] += "${_MENDER_IMAGE_DEPS_EXTRA}"
 # be included by default on cboot platforms.
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS:remove:tegra194 = "kernel-image kernel-devicetree"
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS:remove:tegra186 = "${@'kernel-image kernel-devicetree' if (d.getVar('PREFERRED_PROVIDER_virtual/bootloader') or '').startswith('cboot') else ''}"
-MACHINE_ESSENTIAL_EXTRA_RDEPENDS:remove:jetson-orin-nano-devkit-nvme = "kernel-image kernel-devicetree"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS:remove:tegra234 = "kernel-image kernel-devicetree"
 
 # Compatibility settings for handling the machine name changes
 # made in L4T R32.5.x, to allow for upgrades.  This does not
