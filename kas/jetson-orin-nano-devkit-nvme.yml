@@ -5,6 +5,9 @@ header:
     - kas/include/tegra-jetpack5.yml
 
 machine: jetson-orin-nano-devkit-nvme
+repos:
+  meta-tegra:
+    refspec: b7a0792b996b47305c7ec1713621b0e07d314700
 
 local_conf_header:
   tegra-orin-nano-nvme: |
